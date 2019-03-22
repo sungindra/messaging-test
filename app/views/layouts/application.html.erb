@@ -10,15 +10,23 @@
   </head>
 
   <body>
-    <nav class="site-header sticky-top py-1">
-      <div class="container d-flex flex-column flex-md-row justify-content-between">
-        <a class="py-2" href="#">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mx-auto" role="img" viewBox="0 0 24 24" focusable="false"><title>Product</title><circle cx="12" cy="12" r="10"/><path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"/></svg>
-        </a>
-        <a class="py-2 d-none d-md-inline-block" href="#">Tour</a>
-        <a class="py-2 d-none d-md-inline-block" href="#">Product</a>
+    <div class="sticky-top site-header d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom shadow-sm">
+      <div class="mr-md-auto">
+        <h5 class="font-weight-bold"><%= link_to "Company name", :root %></h5>
+        <nav class="my-2 my-md-0 mr-md-3">
+          <a class="p-2" href="#">Features</a>
+          <a class="p-2" href="#">Enterprise</a>
+          <a class="p-2" href="#">Support</a>
+          <a class="p-2" href="#">Pricing</a>
+        </nav>
       </div>
-    </nav>
+      <% if current_user %>
+        <%= link_to "Logout", destroy_user_session_path, class: ["btn", "btn-outline-primary"], method: :delete %>
+      <% else %>
+        <a class="btn btn-outline-primary mr-3" href=<%= new_user_session_path %> >Login</a>
+        <a class="btn btn-outline-primary" href=<%= new_user_registration_path %> >Sign up</a>
+      <% end %>
+    </div>
 
     <div class="px-4">
       <p class="notice mb-1"><%= notice %></p>
@@ -29,3 +37,18 @@
     </div>
   </body>
 </html>
+
+<style>
+  .site-header{
+    background-color: #111;
+  }
+
+  .site-header a{
+    color: #BBB;
+  }
+
+  .site-header a:hover{
+    color: #EEE;
+    text-decoration: none;
+  }
+</style>
